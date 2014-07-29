@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Choose and upload file using nodeJs
+  h3  #{msg}
+  form(name="fileUpload", action="/fileUpload",enctype="multipart/form-data", method="post")
+      br 
+      label Choose file name: 
+      input(name="name", type="text", placeholder="Enter your name")
+      br 
+      label File: 
+      input(name="uploadfile", type="file")
+      br 
+      input(value="Submit", type="submit")
+      
+  
