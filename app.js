@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 app.get('/deleteFile/:file', function(req, res){
 var targetPath = './public/files/'+req.param("file");
   
-  
+    
      fs.unlink(targetPath,function(err) {
        if(err) {
         res.send("Error to delete file: "+err);
