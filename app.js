@@ -29,13 +29,35 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {  
+     fs.readdir("./public/files/",function(err, list) {
+       if(err)
+         throw err;
+     res.render('fileUpload',{fileList:list});
+     });
+});
+
+app.get('/deleteFile/:file', function(req, res){
+var targetPath = './public/files/'+req.param("file");
+  
+  
+     fs.unlink(targetPath,function(err) {
+       if(err) {
+        res.send("Error to delete file: "+err);
+        } else {
+        res.redirect('/');
+        }
+     })
+   
+  
+});
+
 app.get('/users', user.list);
 app.get('/fileUpload', routes.fileUpload);
 
 app.post('/fileUpload', function(req, res) {  
   var tempPath = req.files.uploadfile.path;
- var targetPath = './public/files/'+req.body.name;
+ var targetPath = './public/files/'+req.files.uploadfile.name;
   fs.rename(tempPath, targetPath, function(err) {
      if(err) { 
         //res.send("Error found to upload file "+err);
@@ -43,10 +65,12 @@ app.post('/fileUpload', function(req, res) {
         var type="error"; 
      } else {
         //res.send("<b>File uploaded to "+targetPath+" ("+req.files.uploadfile.size +" bytes)</b>");
-        var msg = "File uploaded to "+targetPath+" ("+(req.files.uploadfile.size/1024) +" kb)";
+        var fileSize = req.files.uploadfile.size/1024;
+        var msg = "File uploaded to "+targetPath+" ("+(fileSize.toFixed(2)) +" kb)";
         var type="success";
      }
-     res.render('fileUpload',{msg:msg,type:type});
+     res.redirect('/');
+     
   });
 });
 

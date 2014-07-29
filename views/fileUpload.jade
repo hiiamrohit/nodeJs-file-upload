@@ -2,15 +2,19 @@ extends layout
 
 block content
   h1 Choose and upload file using nodeJs
-  h3  #{msg}
   form(name="fileUpload", action="/fileUpload",enctype="multipart/form-data", method="post")
-      br 
-      label Choose file name: 
-      input(name="name", type="text", placeholder="Enter your name")
-      br 
-      label File: 
+      label Choose image to upload: 
       input(name="uploadfile", type="file")
+      span(style="color:red") Upload only image file (PNG, JPEG, GIF)
       br 
-      input(value="Submit", type="submit")
+      input(value="UPLOAD", type="submit")
+   div
+    h1 List all uploaded files  
+    #files  
+     each value in fileList
+       div(style="width:210px;float:left") 
+         img(src="./files/"+value, height=200, width=200)
+         span #{value} 
+          a(href="/deleteFile/"+value) Delete
       
   
