@@ -1,8 +1,8 @@
-File upload with progress bar in nodeJs
+File upload in nodeJs with progress bar
 ========
 
 
-* Simple file upload in nodejs with progress bar
+* Simple file upload in nodeJs with progress bar
 * Technoloy used: ``` NodeJs, expressJs, bootstrap, jquery ```
 
 ```npm install```
