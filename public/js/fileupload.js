@@ -46,6 +46,8 @@ $(function() {
  }
  
  $(document).on('click','#delete',function() {
+   $(this).attr('href','javascript:void(0)');
+   $(this).html("deleting..");
    var file = $(this).attr("file");
     $.ajax({
            url:'deleteFile/'+file,
