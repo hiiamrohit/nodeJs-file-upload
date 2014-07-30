@@ -15,8 +15,8 @@ $(function() {
     xhr.upload.onprogress = function(e) {
       if (e.lengthComputable) {
         var percentage = (e.loaded / e.total) * 100;
-        $('div.progress div').css('width', percentage + '%');
-         $('div.progress div').html(percentage + '%');
+        $('div.progress div').css('width', percentage.toFixed(0) + '%');
+         $('div.progress div').html(percentage.toFixed(0) + '%');
       }
     };
     xhr.onerror = function(e) {
