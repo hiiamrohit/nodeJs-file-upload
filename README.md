@@ -2,7 +2,8 @@ NodeJs Fileupload Example
 ========
 
 
-1. Simple file upload using nodejs
+* Simple file upload using nodejs with progress bar
+* Technoloy used: ``` NodeJs, expressJs, bootstrap, jquery ```
 
 ```npm install```
 ```node app.js```
