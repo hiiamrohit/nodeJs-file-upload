@@ -24,6 +24,7 @@ $(function() {
     };
    xhr.onload = function() {
       var file = xhr.responseText;
+       $('div.progress div').css('width','0%');
        $('div.progress').hide();
       showMsg("alert alert-success", "File uploaded successfully!"); 
       $('#myFile').val('');    
