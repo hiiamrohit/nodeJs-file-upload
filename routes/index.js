@@ -10,3 +10,7 @@ exports.index = function(req, res){
 exports.fileUpload = function(req, res){
   res.render('fileUpload');
 };
+
+exports.filelist = function(req, res){
+  res.render('filelist');
+};

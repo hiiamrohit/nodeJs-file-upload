@@ -45,7 +45,7 @@ var targetPath = config.UPLOADDIR+req.param("file");
        if(err) {
         res.send("Error to delete file: "+err);
         } else {
-        res.redirect('/');
+        res.send("File deleted successfully!");
         }
      })
    
@@ -54,6 +54,14 @@ var targetPath = config.UPLOADDIR+req.param("file");
 
 app.get('/users', user.list);
 app.get('/fileUpload', routes.fileUpload);
+app.get('/filelist', function(req, res) {
+fs.readdir(config.UPLOADDIR,function(err, list) {
+       if(err)
+         throw err;
+     res.render('filelist',{fileList:list});
+     });
+
+});
 
 app.post('/fileUpload', function(req, res) {  
   var tempPath = req.files.uploadfile.path;
@@ -68,8 +76,9 @@ app.post('/fileUpload', function(req, res) {
         var fileSize = req.files.uploadfile.size/1024;
         var msg = "File uploaded to "+targetPath+" ("+(fileSize.toFixed(2)) +" kb)";
         var type="success";
+        res.send(req.files.uploadfile.name);
      }
-     res.redirect('/');
+    
      
   });
 });
