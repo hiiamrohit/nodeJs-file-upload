@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
-
+var config = require('./config');
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -22,7 +22,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-process.env.TMPDIR = './public/temp';
+process.env.TMPDIR = config.TEMPDIR;
 
 // development only
 if ('development' == app.get('env')) {
@@ -30,7 +30,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', function(req, res) {  
-     fs.readdir("./public/files/",function(err, list) {
+     fs.readdir(config.UPLOADDIR,function(err, list) {
        if(err)
          throw err;
      res.render('fileUpload',{fileList:list});
@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/deleteFile/:file', function(req, res){
-var targetPath = './public/files/'+req.param("file");
+var targetPath = config.UPLOADDIR+req.param("file");
   
     
      fs.unlink(targetPath,function(err) {
@@ -57,7 +57,7 @@ app.get('/fileUpload', routes.fileUpload);
 
 app.post('/fileUpload', function(req, res) {  
   var tempPath = req.files.uploadfile.path;
- var targetPath = './public/files/'+req.files.uploadfile.name;
+ var targetPath = config.UPLOADDIR+req.files.uploadfile.name;
   fs.rename(tempPath, targetPath, function(err) {
      if(err) { 
         //res.send("Error found to upload file "+err);
