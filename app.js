@@ -1,6 +1,7 @@
 /*
- * Author: Rohit Patel
+ * Author: Rohit Kumar
  * Date: 24-07-2014
+ * Website: iamrohit.in
  * App Name: Node File Upload
  * Description: File upload module in nodeJs with progress bar
  */
