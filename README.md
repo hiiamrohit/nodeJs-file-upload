@@ -9,4 +9,5 @@ File upload in nodeJs with progress bar
 ```node app.js```
 
 For demo click this link 
-http://nodefileupload.herokuapp.com/
+http://lab.iamrohit.in/node-file-upload
+ 
